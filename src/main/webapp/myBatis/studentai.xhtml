@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://java.sun.com/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+<h:head/>
+<h:body>
+    <h2>Studentai esantys #{studentaiKurse.grupe.specialybe} kurse:</h2>
+    <ol>
+        <ui:repeat value="#{studentaiKurse.grupe.studentai}" var="studentas">
+            <li>
+                #{studentas.vardas} #{studentas.pavarde}
+            </li>
+        </ui:repeat>
+    </ol>
+    <h:form>
+        <h:inputText value="#{studentaiKurse.naujasStudentas.vardas}" required="true" pt:placeholder="Vardas"/>
+        <h:inputText value="#{studentaiKurse.naujasStudentas.pavarde}" required="true" pt:placeholder="Pavardė"/>
+        <h:commandButton value="Pridėti studentą" actionListener="#{carsForTeam.createCar()}"
+                         action="#{'/myBatis/grupes.xhtml?faces-redirect=true&amp;grupes='.concat(studentaiKurse.grupe.id)}">
+            <f:param name="grupeId" value="#{studentaiKurse.grupe.id}"/>
+        </h:commandButton>
+    </h:form>
+    <h:link outcome="/myBatis/grupes" value="Back to grupes page" />
+</h:body>
+</html>

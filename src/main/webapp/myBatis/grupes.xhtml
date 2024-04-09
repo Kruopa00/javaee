@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+<h:head/>
+<h:body>
+    <h2>Kursai:</h2>
+    <ol>
+        <ui:repeat value="#{grupesMyBatis.allGrupes}" var="grupe">
+            <li><h:link value="#{grupe.specialybe}" outcome="studentai?grupeId=#{grupe.id}" /></li>
+        </ui:repeat>
+    </ol>
+    <h:form>
+        <h:inputText value="#{grupesMyBatis.grupeToCreate.specialybe}" required="true" pt:placeholder="Specialybė"/>
+        <h:inputText value="#{grupesMyBatis.grupeToCreate.kursas}" required="true" pt:placeholder="Kursas"/>
+        <h:inputText value="#{grupesMyBatis.grupeToCreate.grupe}" required="true" pt:placeholder="Grupė"/>
+        <h:commandButton value="Prideti" action="#{grupesMyBatis.createGrupe()}" />
+    </h:form>
+    <h:link value="Back to index" outcome="/index"/>
+</h:body>
+</html>

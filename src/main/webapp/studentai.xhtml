@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+<h:head/>
+<h:body>
+    <h2>Studentai esantys #{studentaiKurse.grupe.specialybe} kurse:</h2>
+    <ol>
+        <ui:repeat value="#{studentaiKurse.grupe.studentai}" var="studentas">
+            <li>
+                <h:link value="#{studentas.vardas} #{studentas.pavarde}" outcome="studentasDetails?studentasId=#{student.id}"/>
+            </li>
+        </ui:repeat>
+    </ol>
+    <h:form>
+        <h:inputText value="#{studentaiKurse.naujasStudentas.number}" required="true" pt:placeholder="LSP"/>
+        <h:inputText value="#{studentaiKurse.naujasStudentas.vardas}" required="true" pt:placeholder="Vardas"/>
+        <h:inputText value="#{studentaiKurse.naujasStudentas.pavarde}" required="true" pt:placeholder="Pavardė"/>
+        <h:commandButton value="Pridėti studentą" actionListener="#{studentaiKurse.createStudentas()}"
+                         action="#{'studentasDetails.xhtml?faces-redirect=true&amp;studentasId='.concat(studentaiKurse.naujasStudentas.id)}">
+            <f:param name="grupeId" value="#{studentaiKurse.grupe.id}"/>
+        </h:commandButton>
+    </h:form>
+    <h:link outcome="index" value="Back to teams page" />
+</h:body>
+</html>
